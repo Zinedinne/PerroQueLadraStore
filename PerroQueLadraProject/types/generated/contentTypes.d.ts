@@ -430,6 +430,146 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCarritoProductoCarritoProducto
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'carrito_productos';
+  info: {
+    displayName: 'Carrito_producto';
+    pluralName: 'carrito-productos';
+    singularName: 'carrito-producto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Cantidad: Schema.Attribute.Integer;
+    carrito: Schema.Attribute.Relation<'manyToOne', 'api::carrito.carrito'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::carrito-producto.carrito-producto'
+    > &
+      Schema.Attribute.Private;
+    Precio_unitario: Schema.Attribute.Decimal;
+    producto: Schema.Attribute.Relation<'manyToOne', 'api::producto.producto'>;
+    publishedAt: Schema.Attribute.DateTime;
+    subtotal: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCarritoCarrito extends Struct.CollectionTypeSchema {
+  collectionName: 'carritos';
+  info: {
+    displayName: 'Carrito';
+    pluralName: 'carritos';
+    singularName: 'carrito';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    carrito_productos: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::carrito-producto.carrito-producto'
+    >;
+    cliente: Schema.Attribute.Relation<'oneToOne', 'api::cliente.cliente'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Estado: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::carrito.carrito'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Total: Schema.Attribute.Decimal;
+    Updateat: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiClienteCliente extends Struct.CollectionTypeSchema {
+  collectionName: 'clientes';
+  info: {
+    displayName: 'Cliente';
+    pluralName: 'clientes';
+    singularName: 'cliente';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    carrito: Schema.Attribute.Relation<'oneToOne', 'api::carrito.carrito'>;
+    Correo: Schema.Attribute.Email;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Estado: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cliente.cliente'
+    > &
+      Schema.Attribute.Private;
+    Nombre: Schema.Attribute.String;
+    Numero: Schema.Attribute.BigInteger;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
+  collectionName: 'eventos';
+  info: {
+    displayName: 'Evento';
+    pluralName: 'eventos';
+    singularName: 'evento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
+    FechaFin: Schema.Attribute.DateTime;
+    FechaInicio: Schema.Attribute.Date;
+    FolioMax: Schema.Attribute.Integer;
+    FolioMin: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::evento.evento'
+    > &
+      Schema.Attribute.Private;
+    Media: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    Nombre: Schema.Attribute.String;
+    Precio: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    Ubicacion: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    UrlInscripcion: Schema.Attribute.Text;
+  };
+}
+
 export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   collectionName: 'homepages';
   info: {
@@ -474,9 +614,15 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    Activo: Schema.Attribute.Boolean;
+    carrito_productos: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::carrito-producto.carrito-producto'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Text;
     Imagen: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -491,6 +637,102 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
     Nombre: Schema.Attribute.String;
     Precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
+    tipo_producto: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::tipo-producto.tipo-producto'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    variantes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::variantes-producto.variantes-producto'
+    >;
+  };
+}
+
+export interface ApiTallaTalla extends Struct.CollectionTypeSchema {
+  collectionName: 'tallas';
+  info: {
+    displayName: 'Talla';
+    pluralName: 'tallas';
+    singularName: 'talla';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::talla.talla'> &
+      Schema.Attribute.Private;
+    Nombre: Schema.Attribute.String;
+    Orden: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    Tipo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTipoProductoTipoProducto
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'tipo_productos';
+  info: {
+    displayName: 'Tipo_Producto';
+    pluralName: 'tipo-productos';
+    singularName: 'tipo-producto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tipo-producto.tipo-producto'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Tipo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVariantesProductoVariantesProducto
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'variantes_productos';
+  info: {
+    displayName: 'Variantes_producto';
+    pluralName: 'variantes-productos';
+    singularName: 'variantes-producto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Activo: Schema.Attribute.Boolean;
+    Color: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::variantes-producto.variantes-producto'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Stock: Schema.Attribute.Integer;
+    tallas: Schema.Attribute.Relation<'oneToMany', 'api::talla.talla'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1007,8 +1249,15 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::carrito-producto.carrito-producto': ApiCarritoProductoCarritoProducto;
+      'api::carrito.carrito': ApiCarritoCarrito;
+      'api::cliente.cliente': ApiClienteCliente;
+      'api::evento.evento': ApiEventoEvento;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::producto.producto': ApiProductoProducto;
+      'api::talla.talla': ApiTallaTalla;
+      'api::tipo-producto.tipo-producto': ApiTipoProductoTipoProducto;
+      'api::variantes-producto.variantes-producto': ApiVariantesProductoVariantesProducto;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

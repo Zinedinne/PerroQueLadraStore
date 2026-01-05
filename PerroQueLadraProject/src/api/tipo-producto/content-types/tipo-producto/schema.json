@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tipo_productos",
+  "info": {
+    "singularName": "tipo-producto",
+    "pluralName": "tipo-productos",
+    "displayName": "Tipo_Producto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Tipo": {
+      "type": "string"
+    }
+  }
+}

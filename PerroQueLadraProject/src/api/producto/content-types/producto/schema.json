@@ -29,6 +29,28 @@
         "videos",
         "audios"
       ]
+    },
+    "Activo": {
+      "type": "boolean"
+    },
+    "variantes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::variantes-producto.variantes-producto"
+    },
+    "Descripcion": {
+      "type": "text"
+    },
+    "carrito_productos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::carrito-producto.carrito-producto",
+      "mappedBy": "producto"
+    },
+    "tipo_producto": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tipo-producto.tipo-producto"
     }
   }
 }
