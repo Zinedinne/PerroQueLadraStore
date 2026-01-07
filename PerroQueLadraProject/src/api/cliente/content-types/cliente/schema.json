@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clientes",
+  "info": {
+    "singularName": "cliente",
+    "pluralName": "clientes",
+    "displayName": "Cliente"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Numero": {
+      "type": "biginteger"
+    },
+    "Correo": {
+      "type": "email"
+    },
+    "Estado": {
+      "type": "boolean"
+    },
+    "carrito": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::carrito.carrito",
+      "mappedBy": "cliente"
+    }
+  }
+}

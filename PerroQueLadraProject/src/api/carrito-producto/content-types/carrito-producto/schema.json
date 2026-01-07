@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carrito_productos",
+  "info": {
+    "singularName": "carrito-producto",
+    "pluralName": "carrito-productos",
+    "displayName": "Carrito_producto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "carrito": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::carrito.carrito",
+      "inversedBy": "carrito_productos"
+    },
+    "producto": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::producto.producto",
+      "inversedBy": "carrito_productos"
+    },
+    "Cantidad": {
+      "type": "integer"
+    },
+    "Precio_unitario": {
+      "type": "decimal"
+    },
+    "subtotal": {
+      "type": "decimal"
+    }
+  }
+}

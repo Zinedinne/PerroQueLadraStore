@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "variantes_productos",
+  "info": {
+    "singularName": "variantes-producto",
+    "pluralName": "variantes-productos",
+    "displayName": "Variantes_producto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Color": {
+      "type": "string"
+    },
+    "Stock": {
+      "type": "integer"
+    },
+    "Activo": {
+      "type": "boolean"
+    },
+    "tallas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::talla.talla"
+    }
+  }
+}
