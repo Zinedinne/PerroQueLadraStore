@@ -47,7 +47,25 @@
       "type": "text"
     },
     "FechaFin": {
-      "type": "datetime"
+      "type": "date"
+    },
+    "Horario": {
+      "type": "time"
+    },
+    "DistanciasYCategoria": {
+      "type": "text"
+    },
+    "KitsEntrega": {
+      "type": "text"
+    },
+    "EstimulosYPremio": {
+      "type": "text"
+    },
+    "InscripcionesYPrecio": {
+      "type": "text"
+    },
+    "NotasImportantesYAdicionales": {
+      "type": "text"
     }
   }
 }

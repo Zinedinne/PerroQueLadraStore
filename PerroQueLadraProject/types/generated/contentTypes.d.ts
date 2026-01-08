@@ -545,10 +545,15 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
-    FechaFin: Schema.Attribute.DateTime;
+    DistanciasYCategoria: Schema.Attribute.Text;
+    EstimulosYPremio: Schema.Attribute.Text;
+    FechaFin: Schema.Attribute.Date;
     FechaInicio: Schema.Attribute.Date;
     FolioMax: Schema.Attribute.Integer;
     FolioMin: Schema.Attribute.Integer;
+    Horario: Schema.Attribute.Time;
+    InscripcionesYPrecio: Schema.Attribute.Text;
+    KitsEntrega: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -560,6 +565,7 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
       true
     >;
     Nombre: Schema.Attribute.String;
+    NotasImportantesYAdicionales: Schema.Attribute.Text;
     Precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     Ubicacion: Schema.Attribute.Text;
