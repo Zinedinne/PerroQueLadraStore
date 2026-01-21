@@ -11,12 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "carrito": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::carrito.carrito",
-      "inversedBy": "carrito_productos"
-    },
     "producto": {
       "type": "relation",
       "relation": "manyToOne",

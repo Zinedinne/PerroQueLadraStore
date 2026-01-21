@@ -22,15 +22,21 @@
     },
     "cliente": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::cliente.cliente",
-      "inversedBy": "carrito"
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "carritos"
     },
-    "carrito_productos": {
+    "producto": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::carrito-producto.carrito-producto",
-      "mappedBy": "carrito"
+      "relation": "manyToOne",
+      "target": "api::producto.producto",
+      "inversedBy": "carritos"
+    },
+    "Cantidad": {
+      "type": "integer"
+    },
+    "Detalle": {
+      "type": "text"
     }
   }
 }

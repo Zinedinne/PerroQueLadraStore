@@ -51,6 +51,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::tipo-producto.tipo-producto"
+    },
+    "carritos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::carrito.carrito",
+      "mappedBy": "producto"
     }
   }
 }

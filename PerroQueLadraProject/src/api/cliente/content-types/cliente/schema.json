@@ -22,12 +22,6 @@
     },
     "Estado": {
       "type": "boolean"
-    },
-    "carrito": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::carrito.carrito",
-      "mappedBy": "cliente"
     }
   }
 }

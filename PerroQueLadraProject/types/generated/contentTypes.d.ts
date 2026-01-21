@@ -443,7 +443,6 @@ export interface ApiCarritoProductoCarritoProducto
   };
   attributes: {
     Cantidad: Schema.Attribute.Integer;
-    carrito: Schema.Attribute.Relation<'manyToOne', 'api::carrito.carrito'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -474,14 +473,15 @@ export interface ApiCarritoCarrito extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    carrito_productos: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::carrito-producto.carrito-producto'
+    Cantidad: Schema.Attribute.Integer;
+    cliente: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
-    cliente: Schema.Attribute.Relation<'oneToOne', 'api::cliente.cliente'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Detalle: Schema.Attribute.Text;
     Estado: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -489,6 +489,7 @@ export interface ApiCarritoCarrito extends Struct.CollectionTypeSchema {
       'api::carrito.carrito'
     > &
       Schema.Attribute.Private;
+    producto: Schema.Attribute.Relation<'manyToOne', 'api::producto.producto'>;
     publishedAt: Schema.Attribute.DateTime;
     Total: Schema.Attribute.Decimal;
     Updateat: Schema.Attribute.DateTime;
@@ -509,7 +510,6 @@ export interface ApiClienteCliente extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    carrito: Schema.Attribute.Relation<'oneToOne', 'api::carrito.carrito'>;
     Correo: Schema.Attribute.Email;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -545,10 +545,15 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
-    FechaFin: Schema.Attribute.DateTime;
+    DistanciasYCategoria: Schema.Attribute.Text;
+    EstimulosYPremio: Schema.Attribute.Text;
+    FechaFin: Schema.Attribute.Date;
     FechaInicio: Schema.Attribute.Date;
     FolioMax: Schema.Attribute.Integer;
     FolioMin: Schema.Attribute.Integer;
+    Horario: Schema.Attribute.Time;
+    InscripcionesYPrecio: Schema.Attribute.Text;
+    KitsEntrega: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -560,6 +565,7 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
       true
     >;
     Nombre: Schema.Attribute.String;
+    NotasImportantesYAdicionales: Schema.Attribute.Text;
     Precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     Ubicacion: Schema.Attribute.Text;
@@ -619,6 +625,7 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::carrito-producto.carrito-producto'
     >;
+    carritos: Schema.Attribute.Relation<'oneToMany', 'api::carrito.carrito'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1194,10 +1201,10 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    carritos: Schema.Attribute.Relation<'oneToMany', 'api::carrito.carrito'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
