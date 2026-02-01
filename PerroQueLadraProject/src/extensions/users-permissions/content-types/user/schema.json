@@ -71,6 +71,12 @@
       "relation": "oneToMany",
       "target": "api::carrito.carrito",
       "mappedBy": "cliente"
+    },
+    "pedidos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pedido.pedido",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

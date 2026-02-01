@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_orden_item_pedidos",
+  "info": {
+    "displayName": "item_pedido",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "Producto_Nombre": {
+      "type": "string"
+    },
+    "cantidad": {
+      "type": "integer"
+    },
+    "Precio_Unitario": {
+      "type": "decimal"
+    },
+    "Subtotal": {
+      "type": "decimal"
+    },
+    "Variante": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

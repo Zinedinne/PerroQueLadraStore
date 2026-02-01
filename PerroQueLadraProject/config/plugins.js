@@ -1,18 +1,22 @@
 module.exports = ({ env }) => ({
   email: {
     config: {
-      provider: 'nodemailer', // o '@strapi/provider-email-nodemailer'
+      provider: 'nodemailer',
       providerOptions: {
-        host: 'smtp.ethereal.email',
-        port: 587,
+        host: 'smtpout.secureserver.net', 
+        port: 587, 
         auth: {
-          user: 'ubaldo.hodkiewicz38@ethereal.email',
-          pass: 'ffcHg4Kq6kRBRCp7s1',
+          user: env('SMTP_USERNAME'),
+          pass: env('SMTP_PASSWORD'),
+        },
+        secure: true, 
+        tls: {
+          rejectUnauthorized: false, 
         },
       },
       settings: {
-        defaultFrom: 'PERRO QUE LADRA <noreply@perroqueladra.com>',
-        defaultReplyTo: 'noreply@perroqueladra.com',
+        defaultFrom: 'PERRO QUE LADRA <hola@perroqueladra.com.mx>',
+        defaultReplyTo: 'hola@perroqueladra.com.mx',
       },
     },
   },

@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pedidos",
+  "info": {
+    "singularName": "pedido",
+    "pluralName": "pedidos",
+    "displayName": "Pedido"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Estado": {
+      "type": "enumeration",
+      "default": "Pendiente",
+      "enum": [
+        "Pendiente",
+        "Pagado",
+        "Enviado ",
+        "Entregado"
+      ]
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "pedidos"
+    },
+    "total": {
+      "type": "float"
+    },
+    "Lista_Productos": {
+      "type": "component",
+      "component": "orden.item-pedido",
+      "repeatable": true
+    },
+    "Metodo_Pago": {
+      "type": "string"
+    },
+    "Nombre_Completo": {
+      "type": "text"
+    },
+    "Telefono": {
+      "type": "text"
+    },
+    "Calle": {
+      "type": "string"
+    },
+    "Numero_Casa": {
+      "type": "string"
+    },
+    "Estado_Pais": {
+      "type": "string"
+    },
+    "Codigo_Postal": {
+      "type": "string"
+    },
+    "Referencias": {
+      "type": "text"
+    },
+    "MP_Payment_ID": {
+      "type": "text"
+    },
+    "MP_Status_Detail": {
+      "type": "text"
+    }
+  }
+}
