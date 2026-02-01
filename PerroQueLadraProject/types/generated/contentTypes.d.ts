@@ -609,6 +609,53 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
+  collectionName: 'pedidos';
+  info: {
+    displayName: 'Pedido';
+    pluralName: 'pedidos';
+    singularName: 'pedido';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Calle: Schema.Attribute.String;
+    Codigo_Postal: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Estado: Schema.Attribute.Enumeration<
+      ['Pendiente', 'Pagado', 'Enviado ', 'Entregado']
+    > &
+      Schema.Attribute.DefaultTo<'Pendiente'>;
+    Estado_Pais: Schema.Attribute.String;
+    Lista_Productos: Schema.Attribute.Component<'orden.item-pedido', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pedido.pedido'
+    > &
+      Schema.Attribute.Private;
+    Metodo_Pago: Schema.Attribute.String;
+    MP_Payment_ID: Schema.Attribute.Text;
+    MP_Status_Detail: Schema.Attribute.Text;
+    Nombre_Completo: Schema.Attribute.Text;
+    Numero_Casa: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    Referencias: Schema.Attribute.Text;
+    Telefono: Schema.Attribute.Text;
+    total: Schema.Attribute.Float;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
   collectionName: 'productos';
   info: {
@@ -1226,6 +1273,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    pedidos: Schema.Attribute.Relation<'oneToMany', 'api::pedido.pedido'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1261,6 +1309,7 @@ declare module '@strapi/strapi' {
       'api::cliente.cliente': ApiClienteCliente;
       'api::evento.evento': ApiEventoEvento;
       'api::homepage.homepage': ApiHomepageHomepage;
+      'api::pedido.pedido': ApiPedidoPedido;
       'api::producto.producto': ApiProductoProducto;
       'api::talla.talla': ApiTallaTalla;
       'api::tipo-producto.tipo-producto': ApiTipoProductoTipoProducto;
