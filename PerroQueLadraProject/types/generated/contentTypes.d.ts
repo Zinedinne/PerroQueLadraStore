@@ -530,6 +530,36 @@ export interface ApiClienteCliente extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEventoPrecioEventoPrecio
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'evento_precios';
+  info: {
+    displayName: 'Evento_Precio';
+    pluralName: 'evento-precios';
+    singularName: 'evento-precio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    KM: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::evento-precio.evento-precio'
+    > &
+      Schema.Attribute.Private;
+    Precio: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
   collectionName: 'eventos';
   info: {
@@ -547,6 +577,10 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     Descripcion: Schema.Attribute.Text & Schema.Attribute.Required;
     DistanciasYCategoria: Schema.Attribute.Text;
     EstimulosYPremio: Schema.Attribute.Text;
+    evento_precios: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::evento-precio.evento-precio'
+    >;
     FechaFin: Schema.Attribute.Date;
     FechaInicio: Schema.Attribute.Date;
     FolioMax: Schema.Attribute.Integer;
@@ -566,7 +600,6 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     >;
     Nombre: Schema.Attribute.String;
     NotasImportantesYAdicionales: Schema.Attribute.Text;
-    Precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     Ubicacion: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
@@ -1307,6 +1340,7 @@ declare module '@strapi/strapi' {
       'api::carrito-producto.carrito-producto': ApiCarritoProductoCarritoProducto;
       'api::carrito.carrito': ApiCarritoCarrito;
       'api::cliente.cliente': ApiClienteCliente;
+      'api::evento-precio.evento-precio': ApiEventoPrecioEventoPrecio;
       'api::evento.evento': ApiEventoEvento;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::pedido.pedido': ApiPedidoPedido;
