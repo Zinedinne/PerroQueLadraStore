@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "evento_precios",
+  "info": {
+    "singularName": "evento-precio",
+    "pluralName": "evento-precios",
+    "displayName": "Evento_Precio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "KM": {
+      "type": "string"
+    },
+    "Precio": {
+      "type": "decimal"
+    }
+  }
+}

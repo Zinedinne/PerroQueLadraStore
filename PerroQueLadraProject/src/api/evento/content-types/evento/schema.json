@@ -17,9 +17,6 @@
     "FechaInicio": {
       "type": "date"
     },
-    "Precio": {
-      "type": "decimal"
-    },
     "Media": {
       "type": "media",
       "multiple": true,
@@ -66,6 +63,11 @@
     },
     "NotasImportantesYAdicionales": {
       "type": "text"
+    },
+    "evento_precios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::evento-precio.evento-precio"
     }
   }
 }
