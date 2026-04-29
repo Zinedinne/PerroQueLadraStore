@@ -63,7 +63,7 @@
       "type": "text"
     },
     "MP_Status_Detail": {
-      "type": "text"
+      "type": "string"
     }
   }
 }

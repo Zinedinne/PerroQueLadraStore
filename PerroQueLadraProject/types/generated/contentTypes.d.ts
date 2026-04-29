@@ -430,6 +430,44 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBoletoBoleto extends Struct.CollectionTypeSchema {
+  collectionName: 'boletos';
+  info: {
+    displayName: 'Boleto';
+    pluralName: 'boletos';
+    singularName: 'boleto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    correo: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Domicilio: Schema.Attribute.Text;
+    evento: Schema.Attribute.Relation<'manyToOne', 'api::evento.evento'>;
+    FechaNacimiento: Schema.Attribute.Date;
+    folio: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::boleto.boleto'
+    > &
+      Schema.Attribute.Private;
+    MP_Payment_ID: Schema.Attribute.String;
+    MP_Status_Detail: Schema.Attribute.String;
+    Nombre_Participante: Schema.Attribute.String;
+    Numero_Telefono: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    Rama: Schema.Attribute.Enumeration<['Varonil', 'Femenil']>;
+    Talla: Schema.Attribute.Enumeration<['CH', 'M', 'G', 'XG']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCarritoProductoCarritoProducto
   extends Struct.CollectionTypeSchema {
   collectionName: 'carrito_productos';
@@ -571,6 +609,7 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    boletos: Schema.Attribute.Relation<'oneToMany', 'api::boleto.boleto'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -672,7 +711,7 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Metodo_Pago: Schema.Attribute.String;
     MP_Payment_ID: Schema.Attribute.Text;
-    MP_Status_Detail: Schema.Attribute.Text;
+    MP_Status_Detail: Schema.Attribute.String;
     Nombre_Completo: Schema.Attribute.Text;
     Numero_Casa: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -1337,6 +1376,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::boleto.boleto': ApiBoletoBoleto;
       'api::carrito-producto.carrito-producto': ApiCarritoProductoCarritoProducto;
       'api::carrito.carrito': ApiCarritoCarrito;
       'api::cliente.cliente': ApiClienteCliente;
