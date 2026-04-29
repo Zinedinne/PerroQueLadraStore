@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "boletos",
+  "info": {
+    "singularName": "boleto",
+    "pluralName": "boletos",
+    "displayName": "Boleto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "folio": {
+      "type": "integer"
+    },
+    "Nombre_Participante": {
+      "type": "string"
+    },
+    "correo": {
+      "type": "string"
+    },
+    "FechaNacimiento": {
+      "type": "date"
+    },
+    "Domicilio": {
+      "type": "text"
+    },
+    "Numero_Telefono": {
+      "type": "string"
+    },
+    "Rama": {
+      "type": "enumeration",
+      "enum": [
+        "Varonil",
+        "Femenil"
+      ]
+    },
+    "Talla": {
+      "type": "enumeration",
+      "enum": [
+        "CH",
+        "M",
+        "G",
+        "XG"
+      ]
+    },
+    "evento": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::evento.evento",
+      "inversedBy": "boletos"
+    },
+    "MP_Payment_ID": {
+      "type": "string"
+    },
+    "MP_Status_Detail": {
+      "type": "string"
+    }
+  }
+}

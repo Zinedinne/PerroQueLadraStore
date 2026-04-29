@@ -68,6 +68,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::evento-precio.evento-precio"
+    },
+    "boletos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::boleto.boleto",
+      "mappedBy": "evento"
     }
   }
 }
