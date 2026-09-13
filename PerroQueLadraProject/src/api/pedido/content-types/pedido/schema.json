@@ -18,7 +18,11 @@
         "Pendiente",
         "Pagado",
         "Enviado ",
-        "Entregado"
+        "Entregado",
+        "Pago Rechazado",
+        "Cancelado",
+        "Reembolsado",
+        "Contracargo"
       ]
     },
     "users_permissions_user": {
@@ -64,6 +68,22 @@
     },
     "MP_Status_Detail": {
       "type": "text"
+    },
+    "MP_Preference_ID": {
+      "type": "string"
+    },
+    "MP_Status": {
+      "type": "string"
+    },
+    "MP_Checkout_Version": {
+      "type": "integer",
+      "private": true
+    },
+    "boletos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::boleto.boleto",
+      "mappedBy": "pedido"
     }
   }
 }

@@ -7,7 +7,12 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    const extension = strapi.plugin('graphql')?.service('extension');
+    // Orders and tickets are managed through the authenticated payment endpoints.
+    extension?.shadowCRUD('api::pedido.pedido').disable();
+    extension?.shadowCRUD('api::boleto.boleto').disable();
+  },
 
   /**
    * An asynchronous bootstrap function that runs before

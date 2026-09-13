@@ -37,6 +37,16 @@
     },
     "Detalle": {
       "type": "text"
+    },
+    "evento": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::evento.evento"
+    },
+    "evento_precio": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::evento-precio.evento-precio"
     }
   }
 }
