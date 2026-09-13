@@ -3,19 +3,19 @@ module.exports = ({ env }) => ({
     config: {
       provider: 'nodemailer',
       providerOptions: {
-        host: 'smtpout.secureserver.net', 
-        port: 587, 
+        host: env('SMTP_HOST', 'smtpout.secureserver.net'),
+        port: env.int('SMTP_PORT', 465),
+        secure: true,
         auth: {
           user: env('SMTP_USERNAME'),
           pass: env('SMTP_PASSWORD'),
         },
-        secure: true, 
         tls: {
-          rejectUnauthorized: false, 
+          rejectUnauthorized: false,
         },
       },
       settings: {
-        defaultFrom: 'PERRO QUE LADRA <hola@perroqueladra.com.mx>',
+        defaultFrom: '"Perro Que Ladra" <hola@perroqueladra.com.mx>',
         defaultReplyTo: 'hola@perroqueladra.com.mx',
       },
     },

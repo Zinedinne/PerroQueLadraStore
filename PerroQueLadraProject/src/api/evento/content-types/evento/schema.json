@@ -1,3 +1,4 @@
+
 {
   "kind": "collectionType",
   "collectionName": "eventos",
@@ -69,3 +70,4 @@
     }
   }
 }
+
